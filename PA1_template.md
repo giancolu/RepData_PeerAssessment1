@@ -46,8 +46,19 @@ hist(a$x, main = "Histogram of total steps taken on average each day", xlab = "t
 * Calculate the mean and median of the total number of steps taken per day
 
 ```r
-avstday <- round(mean(a$x, na.rm = T), 0)
-mestday <- round(median(a$x, na.rm = T), 0)
+avstday <- round(mean(a$x, na.rm = T), 0); avstday
+```
+
+```
+## [1] 10766
+```
+
+```r
+mestday <- round(median(a$x, na.rm = T), 0); mestday
+```
+
+```
+## [1] 10765
 ```
 
 The __mean__ of steps taken per day is __10766__   
@@ -68,6 +79,33 @@ plot(b$daymin, b$steps, type = "l", ylab = "average number of steps", xlab = "da
 
 ![plot of chunk Fig2](./PA1_template_files/figure-html/Fig2.png) 
 
+* Report the 5-min interval, on average across all the days in the dataset, that contains the maximum number of steps
+
+
+```r
+maxstepint <- b[b$steps == max(b$steps),1]; maxstepint
+```
+
+```
+## [1] 835
+## 288 Levels: 0 5 10 15 20 25 30 35 40 45 50 55 100 105 110 115 120 ... 2355
+```
+
+```r
+maxstepmin <- b[b$steps == max(b$steps),3]; maxstepmin
+```
+
+```
+## [1] 515
+```
+
+```r
+maxstep <- round(max(b$steps),0); maxstep
+```
+
+```
+## [1] 206
+```
 
 The interval __835__ (515^ minute of the day), on average across all the days in the dataset, contains the maximum number of steps (__206__) 
 
@@ -78,9 +116,27 @@ The interval __835__ (515^ minute of the day), on average across all the days in
 * Calculate and report the total number of missing values in the dataset
 
 ```r
-NAsteps <- sum(is.na(db$steps)*1)
-NAdate <- sum(is.na(db$date)*1)
-NAinterval <- sum(is.na(db$interval)*1)
+NAsteps <- sum(is.na(db$steps)*1); NAsteps
+```
+
+```
+## [1] 2304
+```
+
+```r
+NAdate <- sum(is.na(db$date)*1); NAdate
+```
+
+```
+## [1] 0
+```
+
+```r
+NAinterval <- sum(is.na(db$interval)*1); NAinterval
+```
+
+```
+## [1] 0
 ```
 
 __Missing values__ of the var __"steps"__ are: __2304__       
@@ -120,8 +176,19 @@ hist(c$x, main = "Histogram of total steps taken on average each day (imputed da
 * Calculate the mean and median of the total number of steps taken per day with imputed dataset
 
 ```r
-avstdaynew <- round(mean(c$x), 0)
-mestdaynew <- round(median(c$x), 0)
+avstdaynew <- format(round(mean(c$x), 0), scientif = F); avstdaynew
+```
+
+```
+## [1] "10766"
+```
+
+```r
+mestdaynew <- format(round(median(c$x), 0), scientif = F); mestdaynew
+```
+
+```
+## [1] "10762"
 ```
 
 

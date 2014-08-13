@@ -27,7 +27,7 @@ db$interval <- as.factor(db$interval)
 
 * Creating a histogram of the total number of steps taken each day
 
-```{r Fig1}
+```{r Fig1, fig.width=8}
 a <- aggregate(db$steps, by = list(Date = db$date), FUN = "sum")
 hist(a$x, main = "Histogram of total steps taken on average each day", xlab = "total number of steps")
 ```
@@ -35,8 +35,8 @@ hist(a$x, main = "Histogram of total steps taken on average each day", xlab = "t
 
 * Calculate the mean and median of the total number of steps taken per day
 ```{r}
-avstday <- round(mean(a$x, na.rm = T), 0)
-mestday <- round(median(a$x, na.rm = T), 0)
+avstday <- round(mean(a$x, na.rm = T), 0); avstday
+mestday <- round(median(a$x, na.rm = T), 0); mestday
 ```
 
 The __mean__ of steps taken per day is __`r format(avstday, scientif = F)`__   
@@ -48,14 +48,21 @@ The __median__ of steps taken per day is __`r format(mestday, scientif = F)`__
 ### What is the average daily activity pattern?
 
 * Create a plot of the number of steps accross the 5-min intervals of a day averaged accross all days
-```{r Fig2} 
+```{r Fig2, fig.width=8} 
 b <- aggregate(steps ~ interval, FUN = "mean", data = db)
 b$daymin <- as.integer(seq(0,1435,by=5)) 
 plot(b$daymin, b$steps, type = "l", ylab = "average number of steps", xlab = "day minute", main = "Number of steps in the 5-min intervals of a day averaged accross days")
 ```
 
+* Report the 5-min interval, on average across all the days in the dataset, that contains the maximum number of steps
 
-The interval __`r b[b$steps == max(b$steps),1]`__ (`r b[b$steps == max(b$steps),3]`^ minute of the day), on average across all the days in the dataset, contains the maximum number of steps (__`r round(max(b$steps),0)`__) 
+```{r}
+maxstepint <- b[b$steps == max(b$steps),1]; maxstepint
+maxstepmin <- b[b$steps == max(b$steps),3]; maxstepmin
+maxstep <- round(max(b$steps),0); maxstep
+```
+
+The interval __`r maxstepint`__ (`r maxstepmin`^ minute of the day), on average across all the days in the dataset, contains the maximum number of steps (__`r maxstep`__) 
 
 
 
@@ -63,9 +70,9 @@ The interval __`r b[b$steps == max(b$steps),1]`__ (`r b[b$steps == max(b$steps),
 
 * Calculate and report the total number of missing values in the dataset
 ```{r}
-NAsteps <- sum(is.na(db$steps)*1)
-NAdate <- sum(is.na(db$date)*1)
-NAinterval <- sum(is.na(db$interval)*1)
+NAsteps <- sum(is.na(db$steps)*1); NAsteps
+NAdate <- sum(is.na(db$date)*1); NAdate
+NAinterval <- sum(is.na(db$interval)*1); NAinterval
 ```
 
 __Missing values__ of the var __"steps"__ are: __`r NAsteps`__       
@@ -92,7 +99,7 @@ db1 <- cbind(db,stepsnew)
 
 
 * Make a histogram of the total number of steps taken each day with imputed dataset
-```{r Fig3}
+```{r Fig3, fig.width=8}
 c <- aggregate(db1$stepsnew, by = list(Date = db$date), FUN = "sum")
 hist(c$x, main = "Histogram of total steps taken on average each day (imputed dataset)", xlab = "total number of steps")
 ```
@@ -100,14 +107,14 @@ hist(c$x, main = "Histogram of total steps taken on average each day (imputed da
 
 * Calculate the mean and median of the total number of steps taken per day with imputed dataset
 ```{r}
-avstdaynew <- round(mean(c$x), 0)
-mestdaynew <- round(median(c$x), 0)
+avstdaynew <- format(round(mean(c$x), 0), scientif = F); avstdaynew
+mestdaynew <- format(round(median(c$x), 0), scientif = F); mestdaynew
 ```
 
 
-The __mean__ of steps taken per day is __`r format(avstdaynew, scientif = F)`__   
+The __mean__ of steps taken per day is __`r avstdaynew`__   
 
-The __median__ of steps taken per day is __`r format(mestdaynew, scientif = F)`__
+The __median__ of steps taken per day is __`r mestdaynew`__
 
 Mean and median values __do not differ__ between imputed and not imputed dataset
 
