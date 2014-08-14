@@ -335,6 +335,32 @@ db1 &lt;- cbind(db,stepsnew)
 </code></pre>
 
 <ul>
+<li>Confirm imputation process for var &ldquo;steps&rdquo;</li>
+</ul>
+
+<pre><code class="r">summary(db1$steps)
+</code></pre>
+
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##     0.0     0.0     0.0    37.4    12.0   806.0    2304
+</code></pre>
+
+<pre><code class="r">summary(db1$stepsnew)
+</code></pre>
+
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0     0.0     0.0    37.4    27.0   806.0
+</code></pre>
+
+<pre><code class="r">NAstepsimp &lt;- sum(is.na(db1$stepsnew)*1); NAstepsimp
+</code></pre>
+
+<pre><code>## [1] 0
+</code></pre>
+
+<p>The number of NA of the imputed var &ldquo;stepsnew&rdquo; is 0</p>
+
+<ul>
 <li>Make a histogram of the total number of steps taken each day with imputed dataset</li>
 </ul>
 

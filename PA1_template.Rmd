@@ -1,8 +1,3 @@
----
-output:
-  html_document:
-    keep_md: yes
----
 ## Reproducible Research: Peer Assessment 1
 
 ### Loading and preprocessing the data
@@ -97,6 +92,14 @@ for (i in 1:17568) {
 db1 <- cbind(db,stepsnew)
 ```
 
+* Confirm imputation process for var "steps"
+```{r}
+summary(db1$steps)
+summary(db1$stepsnew)
+NAstepsimp <- sum(is.na(db1$stepsnew)*1); NAstepsimp
+```
+
+The number of NA of the imputed var "stepsnew" is `r NAstepsimp`
 
 * Make a histogram of the total number of steps taken each day with imputed dataset
 ```{r Fig3, fig.width=8}
