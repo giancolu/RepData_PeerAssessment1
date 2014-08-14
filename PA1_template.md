@@ -1,3 +1,8 @@
+---
+output:
+  html_document:
+    keep_md: yes
+---
 ## Reproducible Research: Peer Assessment 1
 
 ### Loading and preprocessing the data
@@ -40,7 +45,7 @@ a <- aggregate(db$steps, by = list(Date = db$date), FUN = "sum")
 hist(a$x, main = "Histogram of total steps taken on average each day", xlab = "total number of steps")
 ```
 
-![plot of chunk Fig1](./PA1_template_files/figure-html/Fig1.png) 
+![plot of chunk Fig1](figure/Fig1.png) 
 
 
 * Calculate the mean and median of the total number of steps taken per day
@@ -77,7 +82,7 @@ b$daymin <- as.integer(seq(0,1435,by=5))
 plot(b$daymin, b$steps, type = "l", ylab = "average number of steps", xlab = "day minute", main = "Number of steps in the 5-min intervals of a day averaged accross days")
 ```
 
-![plot of chunk Fig2](./PA1_template_files/figure-html/Fig2.png) 
+![plot of chunk Fig2](figure/Fig2.png) 
 
 * Report the 5-min interval, on average across all the days in the dataset, that contains the maximum number of steps
 
@@ -170,7 +175,7 @@ c <- aggregate(db1$stepsnew, by = list(Date = db$date), FUN = "sum")
 hist(c$x, main = "Histogram of total steps taken on average each day (imputed dataset)", xlab = "total number of steps")
 ```
 
-![plot of chunk Fig3](./PA1_template_files/figure-html/Fig3.png) 
+![plot of chunk Fig3](figure/Fig3.png) 
 
 
 * Calculate the mean and median of the total number of steps taken per day with imputed dataset
@@ -233,4 +238,4 @@ x <-qplot(daymin,stepsnew, data = db2, facets = wend~., geom = "line",xlab = "mi
 x + scale_x_continuous(breaks=seq(0,1435,by=50))
 ```
 
-![plot of chunk Fig4](./PA1_template_files/figure-html/Fig4.png) 
+![plot of chunk Fig4](figure/Fig4.png) 
